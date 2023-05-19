@@ -1,5 +1,6 @@
 import  { useContext } from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 const AddToy = () => {
     const { user } = useContext(AuthContext);
@@ -22,6 +23,13 @@ const AddToy = () => {
       .then((res) => res.json())
       .then((result) => {
         console.log(result);
+        if(result.insertedId){
+          Swal.fire(
+            'Great job!',
+            'You successfully added a Toy!',
+            'success'
+          )
+        }
       });
     console.log(data);
   };
@@ -72,7 +80,7 @@ const AddToy = () => {
               <select className="text-input px-16 rounded-lg" {...register("sub_category")}>
                 <option value="princes">Princes</option>
                 <option value="frozen-dolls">Frozen Dolls</option>
-                <option value="donald-duck">Donald Duck</option>
+                <option value="donald">Donald Duck</option>
                 
               </select>
               </div>
@@ -114,7 +122,7 @@ const AddToy = () => {
                 className="text-input px-16 rounded-lg"
                 {...register("rating", { required: true })}
                
-                type="number"
+                type="text"
               />
               </div>
 

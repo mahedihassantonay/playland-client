@@ -1,13 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../App.css";
 
-function Tabs() {
-  const [toggleState, setToggleState] = useState(1);
+const ShopByCategory = () =>{
+  const [toggleState, setToggleState] = useState('princes');
+  const [toys, setToys] = useState([])
 
   const toggleTab = (index) => {
+    // console.log( index);
     setToggleState(index);
   };
 
+  useEffect(()=>{
+   
+    fetch(`http://localhost:2000/allToys/${toggleState}`)
+    .then(res=>res.json())
+    .then(data=> {
+      
+      setToys(data)
+      console.log(data)
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  },[toggleState])
+
+ 
+
+  // const filterToy = toys?.filter(toy=> toy.sub_category == toggleState)
+  // console.log(filterToy)
   return (
     <div className="my-16">
         <div className="w-1/4 ml-auto my-8">
@@ -16,16 +36,16 @@ function Tabs() {
     <div className="">
       <div className="bloc-tabs font-semibold">
         <button
-          className={`${toggleState === 1 ? "tabs active-tabs" : "tabs"} `}
-          onClick={() => toggleTab(1)}
+          className={`${toggleState === 'princes' ? "tabs active-tabs" : "tabs"} `}
+          onClick={() => toggleTab('princes')}
         >
-          Tab 1
+          Disney Princes
         </button>
         <button
-          className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-          onClick={() => toggleTab(2)}
+          className={`${toggleState === 'donald' ? "tabs active-tabs" : "tabs"}`}
+          onClick={() => toggleTab('donald')}
         >
-          Tab 2
+          Donald Duck
         </button>
         <button
           className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
@@ -35,60 +55,29 @@ function Tabs() {
         </button>
       </div>
 
-      <div className="content-tabs">
-        <div
-          className={toggleState === 1 ? "content  active-content" : "content"}
-        >
-          <h2>Content 1</h2>
-          
-          <div className="card w-96 bg-base-100 shadow-xl">
-  <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-  <div className="card-body">
-    <h2 className="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div className="card-actions justify-end">
-      <button className="btn bg-orange-400">Buy Now</button>
-    </div>
-  </div>
-</div>
-        </div>
+      <div className="content-tabs grid grid-cols-1 lg:grid-cols-3 py-8 gap-8">
+        
 
-        <div
-          className={toggleState === 2 ? "content  active-content" : "content"}
-        >
-          <h2>Content 2</h2>
-          <div className="card w-96 bg-base-100 shadow-xl">
-  <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-  <div className="card-body">
-    <h2 className="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div className="card-actions justify-end">
-      <button className="btn bg-orange-400">Buy Now</button>
-    </div>
-  </div>
-</div>
-        </div>
+        {
+          toys.map(toy=>(
+            <div key={toy._id} className="card w-96 bg-base-100 shadow-xl">
+              <figure><img className="h-96" src={toy.image} alt="Shoes" /></figure>
+              <div className="card-body text-center font-semibold">
+                <h2 className="text-2xl font-bold">{toy.toy_name}</h2>
+                <p>Price: ${toy.price}</p>
+                <p>Rating: {toy.rating}</p>
+                <div className="card-actions justify-center">
+                  <button className="btn bg-orange-400">Buy Now</button>
+                </div>
+              </div>
+            </div>
 
-        <div
-          className={toggleState === 3 ? "content  active-content" : "content"}
-        >
-          <h2>Content 3</h2>
-          
-          <div className="card w-96 bg-base-100 shadow-xl">
-  <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-  <div className="card-body">
-    <h2 className="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div className="card-actions justify-end">
-      <button className="btn bg-orange-400">Buy Now</button>
-    </div>
-  </div>
-</div>
-        </div>
+          ))
+        }
       </div>
     </div></div>
     
   );
 }
 
-export default Tabs;
+export default ShopByCategory;
