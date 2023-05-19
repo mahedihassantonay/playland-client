@@ -80,7 +80,7 @@ const AddToy = () => {
               <select className="text-input px-16 rounded-lg" {...register("sub_category")}>
                 <option value="princes">Princes</option>
                 <option value="frozen-dolls">Frozen Dolls</option>
-                <option value="donald">Donald Duck</option>
+                <option value="donald-duck">Donald Duck</option>
                 
               </select>
               </div>

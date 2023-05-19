@@ -42,14 +42,14 @@ const ShopByCategory = () =>{
           Disney Princes
         </button>
         <button
-          className={`${toggleState === 'donald' ? "tabs active-tabs" : "tabs"}`}
-          onClick={() => toggleTab('donald')}
+          className={`${toggleState === 'donald-duck' ? "tabs active-tabs" : "tabs"}`}
+          onClick={() => toggleTab('donald-duck')}
         >
           Donald Duck
         </button>
         <button
-          className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
-          onClick={() => toggleTab(3)}
+          className={toggleState === 'frozen-dolls' ? "tabs active-tabs" : "tabs"}
+          onClick={() => toggleTab('frozen-dolls')}
         >
           Tab 3
         </button>
