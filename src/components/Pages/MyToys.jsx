@@ -34,6 +34,22 @@ const MyToys = () => {
             }
         })
   }
+
+  const handleDelete = id =>{
+        fetch(`http://localhost:2000/deleteToy/${id}`,{
+            method: 'DELETE'
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.deletedCount > 0){
+                alert('deleted succesful')
+                const remaining = toys.filter(toy=> toy._id !== id)
+                setToys(remaining)
+            }
+        })
+  }
+
   return (
     <div className="container mx-auto">
       <div className="overflow-x-auto w-full">
@@ -47,6 +63,7 @@ const MyToys = () => {
               <th>SubCategory</th>
               <th>Price</th>
               <th>Available Quantity</th>
+              <th></th>
               <th></th>
             </tr>
           </thead>
@@ -90,7 +107,7 @@ const MyToys = () => {
                   </div>
                 </th>
                 <th>
-                  <button className="btn bg-blue-500">X</button>
+                  <button onClick={()=>handleDelete(toy._id)} className="btn bg-blue-500">X</button>
                 </th>
               </tr>
             ))}
