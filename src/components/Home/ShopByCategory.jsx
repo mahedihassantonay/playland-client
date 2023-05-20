@@ -51,7 +51,7 @@ const ShopByCategory = () =>{
           className={toggleState === 'frozen-dolls' ? "tabs active-tabs" : "tabs"}
           onClick={() => toggleTab('frozen-dolls')}
         >
-          Tab 3
+          Frozen Dolls
         </button>
       </div>
 
