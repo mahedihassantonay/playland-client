@@ -5,6 +5,7 @@ import UpdateToy from "./UpdateToy";
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
+  const [control, setControl] = useState(false)
   console.log(toys);
 
   useEffect(() => {
@@ -13,7 +14,26 @@ const MyToys = () => {
       .then((data) => {
         setToys(data);
       });
-  }, [user]);
+  }, [user,control]);
+
+  const handleToyUpdate = (data) =>{
+        // console.log(data)
+        fetch(`http://localhost:2000/updateToy/${data?._id}`,{
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res=>res.json())
+        .then(result=>{
+            console.log(result)
+            if(result.modifiedCount > 0){
+                alert('updated successfully')
+                setControl(!control)
+            }
+        })
+  }
   return (
     <div className="container mx-auto">
       <div className="overflow-x-auto w-full">
@@ -60,10 +80,10 @@ const MyToys = () => {
                   />
                   <div className="modal">
                     <div className="modal-box w-11/12 max-w-5xl">
-                     <UpdateToy toy={toy} />
+                     <UpdateToy toy={toy} handleToyUpdate={handleToyUpdate} />
                       <div className="modal-action">
                         <label htmlFor={`my-modal-${toy._id}`} className="btn">
-                          Yay!
+                          Close
                         </label>
                       </div>
                     </div>
