@@ -1,5 +1,5 @@
 import {  useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const AllToys = () => {
   const allToys = useLoaderData();
@@ -13,6 +13,8 @@ const AllToys = () => {
       setToys(data)
     })
   }
+
+
 
   return (
     <div className="container mx-auto">
@@ -44,7 +46,7 @@ const AllToys = () => {
             {/* row 1 */}
 
             {toys.map((toy) => (
-              <tr key={toy._id} className="font-semibold">
+              <tr  key={toy._id} className="font-semibold">
                 <td>
                   <div className="mask mask-squircle w-24 h-24 border-4 overflow-hidden">
                     <img src={toy.image} />
@@ -57,7 +59,7 @@ const AllToys = () => {
                 <td>{toy.quantity}</td>
 
                 <th>
-                  <button className="btn bg-blue-500">details</button>
+                  <Link to={`/singleToy/${toy._id}`}  className="btn bg-blue-500">details</Link>
                 </th>
               </tr>
             ))}
