@@ -5,6 +5,7 @@ import AddToy from "../components/Pages/AddToy";
 import AllToys from "../components/Pages/AllToys";
 import Login from "../components/Pages/Login";
 import MyToys from "../components/Pages/MyToys";
+import Page404 from "../components/Pages/Page404";
 import Registration from "../components/Pages/Registration";
 import SingleToy from "../components/Pages/SingleToy";
 
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <Page404 />,
     children: [
       {
         path: "/",
