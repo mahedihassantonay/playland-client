@@ -23,7 +23,7 @@ const Header = () => {
   <div className="text-white font-semibold gap-4 ">
     <div className="bg-green-400 p-2 rounded hover:bg-transparent"><Link to='/'>Home</Link></div>
     <div className="bg-pink-400 p-2 rounded hover:bg-transparent"><Link to='/allToys'>All Toys</Link></div>
-    <div className="bg-teal-400 p-2 rounded hover:bg-transparent"><Link to='/myToys'>My Toys</Link></div>
+    {user && <div className="bg-teal-400 p-2 rounded hover:bg-transparent"><Link to='/myToys'>My Toys</Link></div>}
     <div className="bg-orange-400 p-2 rounded hover:bg-transparent"><Link to='/addToy'>Add A Toy</Link></div>
     <div className="bg-purple-400 p-2 rounded hover:bg-transparent"><Link to='/'>Blog</Link></div>
   </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../../App.css";
 
 const ShopByCategory = () =>{
@@ -25,7 +26,7 @@ const ShopByCategory = () =>{
   },[toggleState])
 
   
-  
+
 
   // const filterToy = toys?.filter(toy=> toy.sub_category == toggleState)
   // console.log(filterToy)
@@ -68,7 +69,7 @@ const ShopByCategory = () =>{
                 <p>Price: ${toy.price}</p>
                 <p>Rating: {toy.rating}</p>
                 <div className="card-actions justify-center">
-                  <button className="btn bg-orange-400">Details</button>
+                 <Link to={`/singleToy/${toy._id}`}><button className="btn bg-orange-400">Details</button></Link> 
                 </div>
               </div>
             </div>

@@ -15,7 +15,7 @@ const Page404 = () => {
           {error?.message} 
         </h2>
         <Link to='/'>
-        <button className="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        <button className="bg-blue-500 hover:bg-cyan-500 text-white font-bold py-2 px-4 rounded">
           Go back home
         </button>
         </Link>

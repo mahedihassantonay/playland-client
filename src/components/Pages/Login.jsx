@@ -1,12 +1,14 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
     const {signIn} = useContext(AuthContext)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-    const handleLogin = e =>{
+  const location = useLocation();
+  const navigate = useNavigate()
+    const handleSignIn = e =>{
         e.preventDefault();
         console.log(email,password)
        
@@ -14,7 +16,10 @@ const Login = () => {
             if(email,password){
     
                 signIn(email,password)
-                .then(result=>console.log(result.user))
+                .then(result=>{
+                  console.log(result.user)
+                  navigate(location.state?.pathname || "/", { replace: true });
+                })
                 .catch((error) => {
                     console.log(error.message)
                 })
@@ -29,7 +34,7 @@ const Login = () => {
           </div>
           <div className="card flex-shrink-0 w-full shadow-2xl bg-base-100">
             {/* form start */}
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleSignIn}>
               <div className="card-body">
                 <div className="form-control">
                   <label className="label">
