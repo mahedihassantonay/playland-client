@@ -26,11 +26,6 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const logOut = () => {
-    setLoading(true);
-    return signOut(auth);
-  };
-
   const updateUserProfile = (user, name, photo) => {
     updateProfile(user, {
       displayName: name,
@@ -42,6 +37,11 @@ const AuthProvider = ({ children }) => {
       .catch((error) => {
         console.log(error.message);
       });
+  };
+
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
   };
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     registerUser,
     user,
-    setUser,
+
     signIn,
     logOut,
     loading,

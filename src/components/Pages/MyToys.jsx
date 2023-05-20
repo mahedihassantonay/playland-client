@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 import UpdateToy from "./UpdateToy";
 
@@ -29,25 +30,48 @@ const MyToys = () => {
         .then(result=>{
             console.log(result)
             if(result.modifiedCount > 0){
-                alert('updated successfully')
+                Swal.fire(
+                    'Updated',
+                    'Your file has been updated.',
+                    'success'
+                  )
                 setControl(!control)
             }
         })
   }
 
   const handleDelete = id =>{
-        fetch(`http://localhost:2000/deleteToy/${id}`,{
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`http://localhost:2000/deleteToy/${id}`,{
             method: 'DELETE'
         })
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
             if(data.deletedCount > 0){
-                alert('deleted succesful')
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                  )
                 const remaining = toys.filter(toy=> toy._id !== id)
                 setToys(remaining)
             }
         })
+         
+        }
+      })
+        
   }
 
   return (
