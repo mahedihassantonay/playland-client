@@ -32,8 +32,8 @@ const ShopByCategory = () =>{
   // console.log(filterToy)
   return (
     <div className="my-16">
-        <div className="w-1/4 ml-auto my-8">
-        <h1 className="text-2xl p-4 font-semibold text-center text-gray-200 bg-orange-400 uppercase rounded-lg">Shop By Category</h1>
+        <div className="md:w-1/4 ml-auto my-8">
+        <h1 className="md:text-2xl p-4 font-semibold text-center text-gray-200 bg-orange-400 uppercase rounded-lg">Shop By Category</h1>
         </div>
     <div className="">
       <div className="bloc-tabs font-semibold">
@@ -62,8 +62,8 @@ const ShopByCategory = () =>{
 
         {
           toys.map(toy=>(
-            <div key={toy._id} className="card w-96 bg-base-100 shadow-xl">
-              <figure><img className="h-96" src={toy.image} alt="Shoes" /></figure>
+            <div key={toy._id} className="card xl:w-96 bg-base-100 shadow-xl">
+              <figure><img className="md:h-96 h-52" src={toy.image} alt="Shoes" /></figure>
               <div className="card-body text-center font-semibold">
                 <h2 className="text-2xl font-bold">{toy.toy_name}</h2>
                 <p>Price: ${toy.price}</p>

@@ -1,6 +1,6 @@
 const Newsletter = () => {
   return (
-    <div className="bg-teal-500 text-center py-8 space-y-4 rounded-xl ">
+    <div className=" bg-gradient-to-r from-teal-400 to-gray-500 text-center py-8 space-y-4 rounded-xl ">
       <h1 className=" text-3xl font-semibold text-gray-100 p-4 rounded-lg">
         Subscribe To Newsletter
       </h1>

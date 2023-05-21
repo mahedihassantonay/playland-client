@@ -3,8 +3,8 @@ import img2 from "../../assets/2.jpg";
 import img3 from "../../assets/3.jpg";
 const NewArrival = () => {
   return (
-    <div className="flex gap-8 py-12 border-2 border-pink-400 my-8">
-      <div className="bg-pink-500 p-4 text-gray-300 font-bold text-xl space-y-7">
+    <div className="flex lg:gap-8 py-12 lg:border-2 lg:border-pink-400 my-8">
+      <div className="bg-pink-500 p-4 text-gray-300 font-bold text-xl space-y-44 md:space-y-7">
         <h1>N</h1>
         <h1>E</h1>
         <h1>W</h1>
@@ -16,11 +16,12 @@ const NewArrival = () => {
         <h1>V</h1>
         <h1>A</h1>
         <h1>L</h1>
+        
       </div>
-      <div className="flex gap-20">
-        <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="flex flex-col xl:flex-row gap-4 lg:gap-12">
+        <div className="card  bg-base-100 shadow-xl">
           <figure className="px-10 pt-10">
-            <img src={img1} alt="Shoes" className="rounded-xl h-96" />
+            <img src={img1} alt="Shoes" className="rounded-xl xl:h-96" />
           </figure>
           <div className="card-body items-center text-center">
             <h2 className="card-title">Jessie</h2>
@@ -34,7 +35,7 @@ const NewArrival = () => {
           </div>
         </div>
 
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card xl:w-96 bg-base-100 shadow-xl">
           <figure className="px-10 pt-10">
             <img src={img2} alt="Shoes" className="rounded-xl h-96" />
           </figure>
@@ -50,7 +51,7 @@ const NewArrival = () => {
           </div>
         </div>
 
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card xl:w-96 bg-base-100 shadow-xl">
           <figure className="px-10 pt-10">
             <img src={img3} alt="Shoes" className="rounded-xl h-96" />
           </figure>
