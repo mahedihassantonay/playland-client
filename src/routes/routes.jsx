@@ -3,6 +3,7 @@ import Home from "../components/Home/Home";
 import Main from "../components/Main/Main";
 import AddToy from "../components/Pages/AddToy";
 import AllToys from "../components/Pages/AllToys";
+import Blog from "../components/Pages/Blog";
 import Login from "../components/Pages/Login";
 import MyToys from "../components/Pages/MyToys";
 import Page404 from "../components/Pages/Page404";
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         path: 'singleToy/:id',
         element: <PrivateRoute><SingleToy /></PrivateRoute>,
         loader: ({params})=> fetch(`http://localhost:2000/singleToy/${params.id}`)
+      },
+      {
+        path: 'blog',
+        element: <Blog />
       }
     ],
   },

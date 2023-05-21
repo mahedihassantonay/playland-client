@@ -34,7 +34,7 @@ const UpdateToy = ({toy, handleToyUpdate}) => {
     
 //   };
   return (
-    <div className="bg-gradient-to-r from-slate-300 to-gray-600 p-24">
+    <div className="bg-gradient-to-r from-blue-300 to-gray-600 p-24">
       <div className="container mx-auto">
         <form onSubmit={handleSubmit(handleToyUpdate)} className=" w-full">
           {errors.exampleRequired && <span>This field is required</span>}

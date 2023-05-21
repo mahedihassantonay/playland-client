@@ -6,9 +6,9 @@ const SingleToy = () => {
     return (
         <div className="container mx-auto">
 
-<div className="card lg:card-side bg-gradient-to-r from-gray-600 to-blue-300 shadow-xl p-20 mt-24 text-lg">
+<div className="card lg:card-side bg-gradient-to-r from-blue-300 to-gray-900 shadow-xl p-20 mt-24 text-lg">
   <figure><img className="h-96 border rounded-2xl p-8"  src={image} alt="Album"/></figure>
-  <div className="card-body font-semibold w-4/6">
+  <div className="card-body font-semibold w-4/6 text-gray-100">
     <h2 className="font-bold text-3xl"> {toy_name}</h2>
     <p>PostedBY: {seller_name}</p>
     <p>Price: ${price}</p>
