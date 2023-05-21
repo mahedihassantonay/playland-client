@@ -1,10 +1,21 @@
-import {  useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import {  useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const AllToys = () => {
-  const allToys = useLoaderData();
-  const [toys, setToys] = useState(allToys)
+ 
+  const [toys, setToys] = useState([])
   const [searchText, setSearchText] = useState("");
+  // const {totalToys} = useLoaderData();
+  // console.log(totalToys)
+
+  // const toysPerPage = 20;
+ 
+
+  useEffect(()=>{
+    fetch('http://localhost:2000/allToys')
+    .then(res=>res.json())
+    .then(data=>setToys(data))
+  },[])
 
   const handleSearch = () =>{
     fetch(`http://localhost:2000/toySearchByName/${searchText}`)
@@ -13,6 +24,8 @@ const AllToys = () => {
       setToys(data)
     })
   }
+
+ 
 
 
 

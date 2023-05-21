@@ -7,15 +7,16 @@ const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
   const [control, setControl] = useState(false)
+  const [sortPrice, setSortPrice] = useState('ascending');
   console.log(toys);
 
   useEffect(() => {
-    fetch(`http://localhost:2000/myToys/${user?.email}`)
+    fetch(`http://localhost:2000/myToys/${user?.email}?sort=${sortPrice}`)
       .then((res) => res.json())
       .then((data) => {
         setToys(data);
       });
-  }, [user,control]);
+  }, [user,control, sortPrice]);
 
   const handleToyUpdate = (data) =>{
         // console.log(data)
@@ -76,6 +77,11 @@ const MyToys = () => {
 
   return (
     <div className="container mx-auto">
+      <div className="flex justify-center items-center gap-4 my-12">
+        <h1 className="font-bold">Sort By Price-</h1>
+        <button onClick={() => setSortPrice('ascending')} className="btn bg-blue-500 font-bold normal-case">Ascending</button>
+        <button onClick={() => setSortPrice('descending')} className="btn bg-blue-500 font-bold normal-case">Descending</button>
+      </div>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           {/* head */}

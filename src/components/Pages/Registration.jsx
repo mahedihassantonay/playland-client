@@ -30,9 +30,9 @@ const Registration = () => {
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col ">
         <div className="">
-          <h1 className="text-4xl font-bold text-gray-600">Sign Up</h1>
+          <h1 className="text-4xl font-bold text-gray-600">Sign Up Here!</h1>
         </div>
-        <div className="card flex-shrink-0 w-full shadow-2xl bg-base-100">
+        <div className="card flex-shrink-0 w-96 py-8 shadow-2xl bg-base-100">
           {/* form start */}
           <form onSubmit={handleRegistration}>
             <div className="card-body">
