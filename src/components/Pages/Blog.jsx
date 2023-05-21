@@ -1,7 +1,7 @@
 const Blog = () => {
   return (
     <div className="container mx-auto">
-      <div className="p-4">
+      <div className="p-8">
         <h1 className="text-2xl font-semibold">
           #What is an access token and refresh token? How do they work and where
           should we store them on the client-side?
@@ -61,10 +61,10 @@ const Blog = () => {
 </li>
         </p> <br />
         <p className="text-gray-500">
-            <li>Next.js is a React framework for building server-side rendered (SSR) and static websites</li>
-            <li>Next.js offers features like automatic code splitting, hot module replacement, and server-side rendering, which optimize performance and improve user experience.</li>
-            <li>It simplifies the process of creating and deploying React applications by providing built-in support for server-side rendering, routing, and code splitting.</li>
-            <li>It also provides convenient features like file-based routing, API routes, and support for CSS-in-JS libraries, making it a versatile framework for building modern web applications.</li>
+            <li>Nest.js is a progressive, extensible, and TypeScript-based web application framework.</li>
+            <li>It is built on top of Express.js and provides an additional layer of structure and features for building scalable and maintainable applications.</li>
+            <li>Nest.js follows the modular architecture and utilizes decorators, dependency injection, and strong typing.</li>
+            <li>It supports features like routing, middleware, dependency injection, and integrates well with various databases and libraries.</li>
             
         </p>
       </div>
