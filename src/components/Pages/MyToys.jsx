@@ -6,81 +6,82 @@ import UpdateToy from "./UpdateToy";
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
-  const [control, setControl] = useState(false)
-  const [sortPrice, setSortPrice] = useState('ascending');
+  const [control, setControl] = useState(false);
+  const [sortPrice, setSortPrice] = useState("ascending");
   console.log(toys);
 
   useEffect(() => {
-    fetch(`http://localhost:2000/myToys/${user?.email}?sort=${sortPrice}`)
+    fetch(
+      `https://server-gray-mu.vercel.app/myToys/${user?.email}?sort=${sortPrice}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setToys(data);
       });
-  }, [user,control, sortPrice]);
+  }, [user, control, sortPrice]);
 
-  const handleToyUpdate = (data) =>{
-        // console.log(data)
-        fetch(`http://localhost:2000/updateToy/${data?._id}`,{
-            method: 'PUT',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(res=>res.json())
-        .then(result=>{
-            console.log(result)
-            if(result.modifiedCount > 0){
-                Swal.fire(
-                    'Updated',
-                    'Your file has been updated.',
-                    'success'
-                  )
-                setControl(!control)
-            }
-        })
-  }
-
-  const handleDelete = id =>{
-
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(`http://localhost:2000/deleteToy/${id}`,{
-            method: 'DELETE'
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data)
-            if(data.deletedCount > 0){
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                  )
-                const remaining = toys.filter(toy=> toy._id !== id)
-                setToys(remaining)
-            }
-        })
-         
+  const handleToyUpdate = (data) => {
+    // console.log(data)
+    fetch(`https://server-gray-mu.vercel.app/updateToy/${data?._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        if (result.modifiedCount > 0) {
+          Swal.fire("Updated", "Your file has been updated.", "success");
+          setControl(!control);
         }
-      })
-        
-  }
+      });
+  };
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://server-gray-mu.vercel.app/deleteToy/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              const remaining = toys.filter((toy) => toy._id !== id);
+              setToys(remaining);
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div className="container mx-auto">
       <div className="flex justify-center items-center gap-4 my-12">
         <h1 className="font-bold">Sort By Price-</h1>
-        <button onClick={() => setSortPrice('ascending')} className="btn bg-blue-500 font-bold normal-case">Ascending</button>
-        <button onClick={() => setSortPrice('descending')} className="btn bg-blue-500 font-bold normal-case">Descending</button>
+        <button
+          onClick={() => setSortPrice("ascending")}
+          className="btn bg-blue-500 font-bold normal-case"
+        >
+          Ascending
+        </button>
+        <button
+          onClick={() => setSortPrice("descending")}
+          className="btn bg-blue-500 font-bold normal-case"
+        >
+          Descending
+        </button>
       </div>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
@@ -115,7 +116,10 @@ const MyToys = () => {
 
                 <th>
                   {/* The button to open modal */}
-                  <label htmlFor={`my-modal-${toy._id}`} className="btn bg-blue-500">
+                  <label
+                    htmlFor={`my-modal-${toy._id}`}
+                    className="btn bg-blue-500"
+                  >
                     Edit
                   </label>
 
@@ -127,7 +131,7 @@ const MyToys = () => {
                   />
                   <div className="modal">
                     <div className="modal-box w-11/12 max-w-5xl">
-                     <UpdateToy toy={toy} handleToyUpdate={handleToyUpdate} />
+                      <UpdateToy toy={toy} handleToyUpdate={handleToyUpdate} />
                       <div className="modal-action">
                         <label htmlFor={`my-modal-${toy._id}`} className="btn">
                           Close
@@ -137,7 +141,12 @@ const MyToys = () => {
                   </div>
                 </th>
                 <th>
-                  <button onClick={()=>handleDelete(toy._id)} className="btn bg-blue-500">X</button>
+                  <button
+                    onClick={() => handleDelete(toy._id)}
+                    className="btn bg-blue-500"
+                  >
+                    X
+                  </button>
                 </th>
               </tr>
             ))}

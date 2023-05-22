@@ -8,16 +8,21 @@ const Registration = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [photo, setPhoto] = useState('')
+    const [error, setError] = useState('')
 
     const handleRegistration = e =>{
         e.preventDefault();
         console.log(name,email,password)
+        if(password.length < 6){
+          setError('Your password should contain 6 character long')
+        }
 
         if(name,email,password){
 
             registerUser(email,password)
             .then(result=>{
                 console.log(result.user)
+                
                 updateUserProfile(result.user, name, photo);
             })
             .catch((error) => {
@@ -79,6 +84,7 @@ const Registration = () => {
                   required
                 />
               </div>
+              <p><small className="text-red-600">{error}</small></p>
               {/* photo url */}
               <div className="form-control">
                 <label className="label">

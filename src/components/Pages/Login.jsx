@@ -2,13 +2,20 @@ import { useContext, useState } from "react";
 import { FaGooglePlusSquare } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
   const [email, setEmail] = useState("");
+  const [error, setError] = useState('')
   const [password, setPassword] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
+
+
   const handleSignIn = (e) => {
     e.preventDefault();
     console.log(email, password);
@@ -18,9 +25,22 @@ const Login = () => {
         .then((result) => {
           console.log(result.user);
           navigate(location.state?.pathname || "/", { replace: true });
+          toast.success('You are successfully logged in', {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+
         })
         .catch((error) => {
           console.log(error.message);
+          setError('Invalid email/password')
+          
         });
     }
   };
@@ -71,6 +91,7 @@ const Login = () => {
                     className="input input-bordered"
                   />
                 </div>
+                <p><small className="text-red-600">{error}</small></p>
                 <div className="form-control mt-6">
                   <button className="btn bg-blue-500">Login</button>
                 </div>

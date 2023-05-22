@@ -31,26 +31,39 @@ const router = createBrowserRouter([
       },
       {
         path: "addToy",
-        element: <PrivateRoute><AddToy /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddToy />
+          </PrivateRoute>
+        ),
       },
       {
         path: "allToys",
         element: <AllToys />,
-        // loader: ()=>fetch('http://localhost:2000/totalToys')
+        // loader: ()=>fetch('https://server-gray-mu.vercel.app/totalToys')
       },
       {
-        path: 'myToys',
-        element: <PrivateRoute><MyToys /></PrivateRoute>
+        path: "myToys",
+        element: (
+          <PrivateRoute>
+            <MyToys />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'singleToy/:id',
-        element: <PrivateRoute><SingleToy /></PrivateRoute>,
-        loader: ({params})=> fetch(`http://localhost:2000/singleToy/${params.id}`)
+        path: "singleToy/:id",
+        element: (
+          <PrivateRoute>
+            <SingleToy />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://server-gray-mu.vercel.app/singleToy/${params.id}`),
       },
       {
-        path: 'blog',
-        element: <Blog />
-      }
+        path: "blog",
+        element: <Blog />,
+      },
     ],
   },
 ]);

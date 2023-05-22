@@ -1,4 +1,4 @@
-import banner from '../../assets/banner.jpg'
+import banner from '../../assets/4.jpg'
 const Banner = () => {
     return (
         <div className='relative w-full object-cover'>

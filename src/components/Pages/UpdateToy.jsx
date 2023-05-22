@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 // import Swal from "sweetalert2";
 // import { AuthContext } from "../../provider/AuthProvider";
 
-const UpdateToy = ({toy, handleToyUpdate}) => {
+const UpdateToy = ({ toy, handleToyUpdate }) => {
   // const {user} = useContext(AuthContext)
 
   const {
@@ -12,27 +12,7 @@ const UpdateToy = ({toy, handleToyUpdate}) => {
 
     formState: { errors },
   } = useForm();
-//   const onSubmit = (data) => {
-//     fetch("http://localhost:2000/addToy", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(data),
-//     })
-//       .then((res) => res.json())
-//       .then((result) => {
-//         console.log(result);
-//         if (result.insertedId) {
-//           Swal.fire("Great job!", "You successfully added a Toy!", "success");
-//         }
-//       });
-//     console.log(data);
-//   };
-
-// // const onSubmit = (data) => {
-// //     console.log(data)
-// //     handleUpdateToy()
-    
-//   };
+  
   return (
     <div className="bg-gradient-to-r from-blue-300 to-gray-600 p-24">
       <div className="container mx-auto">
@@ -45,7 +25,7 @@ const UpdateToy = ({toy, handleToyUpdate}) => {
               <label className="w-2/12">Id: </label>
               <input
                 className="text-input lg:px-16 rounded-lg "
-                {...register("_id")}    
+                {...register("_id")}
                 value={toy?._id}
               />
             </div>
@@ -55,7 +35,7 @@ const UpdateToy = ({toy, handleToyUpdate}) => {
               <input
                 className="text-input lg:px-16 rounded-lg"
                 {...register("toy_name")}
-                type='text'
+                type="text"
                 defaultValue={toy?.toy_name}
               />
             </div>

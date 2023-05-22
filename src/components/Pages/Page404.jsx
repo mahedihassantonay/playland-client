@@ -1,5 +1,5 @@
 import { Link, useRouteError } from "react-router-dom";
-import errorjson from '../../../public/error.json'
+import errorjson from '../../assets/error.json'
 import Lottie from "lottie-react";
 const Page404 = () => {
     const {error,status} = useRouteError();
